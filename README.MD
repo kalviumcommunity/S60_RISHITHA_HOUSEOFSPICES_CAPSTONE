@@ -1,4 +1,4 @@
-# HOUSE OF SPICES :
+# HOUSE OF SPICESS :
 
 
 ### This website consist of different spices from all around the world 😍!!
