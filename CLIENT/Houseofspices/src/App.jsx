@@ -5,6 +5,7 @@ function App() {
   return (
     <>
     <h1>HOUSE OF SPICES</h1>
+    <h4>Where you can find most afforable and also best quality spices.!!😊</h4>
     <img src="https://www.tastingtable.com/img/gallery/tips-you-need-when-cooking-with-spices/intro-1683560012.jpg" alt="" />
     </>
   )
