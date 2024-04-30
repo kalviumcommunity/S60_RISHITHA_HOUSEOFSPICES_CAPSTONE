@@ -1,14 +1,21 @@
-import './App.css'
+import Frontpage from './componenets/front';
+import Signuppage from './componenets/signup';
+import Loginpage from './componenets/login';
+import { Route,Routes } from 'react-router-dom';
+import Aboutpage from './componenets/about';
+import "./App.css"
 
 function App() {
 
   return (
     <>
-    <h1>HOUSE OF SPICES</h1>
-    <h4>Where you can find most afforable and also best quality spices.!!😊</h4>
-    <img src="https://www.tastingtable.com/img/gallery/tips-you-need-when-cooking-with-spices/intro-1683560012.jpg" alt="" />
+    <Routes>
+      <Route path='/' element={<Frontpage/>}></Route>
+      <Route path='/sign' element={<Signuppage/>}></Route>
+      <Route path='/login' element={<Loginpage/>}></Route>
+      <Route path='/about' element={<Aboutpage/>}></Route>
+    </Routes>
     </>
   )
 }
-
 export default App
