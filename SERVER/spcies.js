@@ -1,4 +1,4 @@
-const Dataspices = [
+const spices = [
     {
         spice: "Saffron",
         rarity: "Rare",
@@ -120,4 +120,4 @@ const Dataspices = [
     }
 ];
 
-module.exports = Dataspices;
+module.exports = spices;
