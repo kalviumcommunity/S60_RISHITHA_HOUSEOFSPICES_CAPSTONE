@@ -2,7 +2,7 @@ import React from "react";
 
 function Loginpage (){
     return(
-        <div>
+        <div className="boder">
             <div>
             <input type="text" placeholder="Full Name"/>
             </div>
