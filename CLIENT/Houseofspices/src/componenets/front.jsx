@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Frontpage (){
+    const [count, setCount] = useState(0);
+    const increase = () => {
+        setCount(count + 1);
+      };
+    
+      const decrease = () => {
+        if (count > 0) {
+          setCount(count - 1);
+        }
+      };
     return(
         <div>
             <div className="navbar" >
@@ -21,6 +32,9 @@ function Frontpage (){
                 </Link>
             </div>
             </div>
+            <div><button onClick={decrease}>-</button></div>
+            <span>{count}</span>
+            <div><button onClick={increase}>+</button></div>
         </div>
     )
 }
