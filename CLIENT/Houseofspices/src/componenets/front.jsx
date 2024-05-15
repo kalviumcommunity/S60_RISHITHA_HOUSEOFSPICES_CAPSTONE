@@ -11,6 +11,11 @@ function Frontpage (){
                 </Link>
             </div>
             <div>
+              <Link to="/add">
+              <button>ADD DATA</button>
+              </Link>
+            </div>
+            <div>
                 <Link to="/sign">
                 <button>SIGNUP</button>
                 </Link>
