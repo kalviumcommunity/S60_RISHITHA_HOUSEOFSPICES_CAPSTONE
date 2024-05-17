@@ -1,4 +1,18 @@
 .navbar{
   display: flex;
   justify-content: space-around;
+  background-color: cadetblue;
+}
+.about{
+  background-color: rgb(214, 151, 107);
+  height: 95vh;
+}
+.about h1{
+  text-align:center ;
+}
+.about h3{
+  text-align: center;
+}
+.about img {
+  margin-left: 25%;
 }
