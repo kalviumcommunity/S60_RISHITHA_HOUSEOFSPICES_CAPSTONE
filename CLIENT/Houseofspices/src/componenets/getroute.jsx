@@ -27,7 +27,7 @@ function FetchData() {
     gettingData();
   }, []);
   return (
-    <div>
+    <div className="get">
       {spicesData.map((data) => {
         return (
           <div key={data._id}>

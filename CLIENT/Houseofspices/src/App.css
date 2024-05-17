@@ -15,4 +15,29 @@
 }
 .about img {
   margin-left: 25%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.navbar button{
+  width: 80px;
+  height: 35px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: rgb(247, 246, 246);
+}
+.about button{
+  width: 80px;
+  height: 35px;
+  border: 2px solid gray;
+  background-color: rgb(247, 246, 246);
+  border-radius: 5px;
+  margin-left: 48%;
+}
+.get{
+  background-color: rgb(243, 180, 157);
+  text-align: center;
+}
+.get img{
+  border: 2px solid black;
+  border-radius: 15px;
 }
