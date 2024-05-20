@@ -2,6 +2,7 @@ const express=require("express");
 const schema = require("./schemajoi")
 const spicesApp=express();
 const {model} = require("./mongo")
+spicesApp.use(express.json())
 spicesApp.get("/get",(req,res)=>{
     model.find({})
     .then((a)=>{ 

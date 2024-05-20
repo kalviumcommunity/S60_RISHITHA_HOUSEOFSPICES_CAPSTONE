@@ -33,11 +33,29 @@
   border-radius: 5px;
   margin-left: 48%;
 }
-.get{
-  background-color: rgb(243, 180, 157);
-  text-align: center;
-}
 .get img{
   border: 2px solid black;
   border-radius: 15px;
+}
+.get{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 50px;
+  text-align: center;
+}
+.get div{
+  border: 2px solid black;
+  background-color: rgb(243, 180, 157);
+  border-radius: 20px;
+}
+.filter{
+  width: 700px;
+  height: 40px;
+  text-align: center;
+  border: 2px solid black;
+  font-size: 1.25rem;
+  margin-left: 25%;
+  border-radius: 20px;
+  margin-top: 20px;
 }

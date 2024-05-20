@@ -25,9 +25,9 @@ const userdata = mongoose.Schema({
 })
 const Spice = mongoose.model("Spice", spicesSchema);
 const modelUser = mongoose.model("infro", userdata)
-Spice.insertMany(data)
-    .then(() => console.log("Data sent"))
-    .catch((err) => console.error("Error sending data:", err));
+// Spice.insertMany(data)
+//     .then(() => console.log("Data sent"))
+//     .catch((err) => console.error("Error sending data:", err));
 
 module.exports = {
     connectdb: backEnd,

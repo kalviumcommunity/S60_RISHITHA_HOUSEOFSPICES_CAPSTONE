@@ -5,17 +5,17 @@ function Frontpage (){
     return(
         <div>
             <div className="navbar" >
-            <div>
+               <div>
                 <Link to="/about">                
                 <button>ABOUT</button>
                 </Link>
-            </div>
-            <div>
+              </div>
+              <div>
               <Link to="/add">
               <button>ADD DATA</button>
               </Link>
-            </div>
-            <div>
+               </div>
+                <div>
                 <Link to="/sign">
                 <button>SIGNUP</button>
                 </Link>
@@ -24,8 +24,9 @@ function Frontpage (){
                 <Link to="/login">
                 <button>LOGIN</button>
                 </Link>
+                 </div>
             </div>
-            </div>
+            <input  className="filter"  type="text" placeholder="Filter the data" />
             <div>
             <div>
               <FetchData/>
