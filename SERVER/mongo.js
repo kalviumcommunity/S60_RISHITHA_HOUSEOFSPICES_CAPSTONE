@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const dot = require("dotenv");
 const data = require("./spcies");
+const { required } = require("joi");
 dot.config();
 async function backEnd() {
     try {
@@ -11,17 +12,44 @@ async function backEnd() {
     }
 }
 const spicesSchema = mongoose.Schema({
-    spice: String,
-    image: String,
-    rarity: String,
-    commonAvailability: String,
-    health: String,
+    spice: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required:true,
+    },
+    rarity:{
+        type: String,
+        required:true,
+    },
+    commonAvailability: {
+        type: String,
+        required:true,
+    },
+    health: {
+        type: String,
+        required:true,
+    },
 });
 const userdata = mongoose.Schema({
-    name:String,
-    nickname:String,
-    email:String,
-    password: String
+    name:{
+        type: String,
+        required:true,
+    },
+    nickname:{
+        type: String,
+        required: true,
+    },
+    email:{
+        type: String,
+        required:true,
+    },
+    password: {
+        type: String,
+        required:true,
+    }
 })
 const Spice = mongoose.model("Spice", spicesSchema);
 const modelUser = mongoose.model("infro", userdata)
