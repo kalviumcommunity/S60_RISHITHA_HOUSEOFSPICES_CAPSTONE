@@ -14,7 +14,12 @@ spicesApp.post("/post",(req,res)=>{
     }
     res.send("This  is a post.")
 })
-spicesApp.delete("/delete",(req,res)=>{
-    res.send("This is a delete.")
+spicesApp.delete("/delete/:key",(req,res)=>{
+    const key = req.params.key;
+    model.findByIdAndDelete(key)
+    .then(e => res.json(e))
+    .catch(error => res.status(404).json(error))
+// spicesApp.delete("/delete",(req,res)=>{
+//     res.send("This is a delete.")
 })
 module.exports=spicesApp;
