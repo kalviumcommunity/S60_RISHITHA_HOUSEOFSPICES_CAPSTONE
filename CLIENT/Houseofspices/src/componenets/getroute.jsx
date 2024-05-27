@@ -1,6 +1,6 @@
 import axios from "axios";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
 function FetchData() {
   const [spicesData, setspicesData] = useState([]);
@@ -39,6 +39,10 @@ function FetchData() {
             <button onClick={decrease}>-</button>
             <span>{count}</span>
           <button onClick={increase}>+</button>
+          <button onClick={() => deleteData(data._id)}>Delete</button>
+          <Link to={`/update/${data._id}`}>
+              <button>Update</button>
+            </Link>
           </div>
         )})}
     </div>
