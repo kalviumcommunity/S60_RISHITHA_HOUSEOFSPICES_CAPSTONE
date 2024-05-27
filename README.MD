@@ -14,6 +14,11 @@
 
 ![img](https://www.gastrotravelogue.com/wp-content/uploads/2020/06/spice-header.jpg)
 
+#### Backend Deployed link -
+(https://s60-rishitha-houseofspices-capstone-3.onrender.com/ping)
+
+#### Front Deployed link -
+(https://unrivaled-fenglisu-62cca5.netlify.app/)
 
 Things need to be done :-
 
