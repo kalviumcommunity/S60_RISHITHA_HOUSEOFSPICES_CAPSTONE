@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 function Aboutpage (){
     return(
-        <div>
+        <div className="about">
 <h1>ABOUT APP:</h1>
 <img src="https://www.tastingtable.com/img/gallery/tips-you-need-when-cooking-with-spices/intro-1683560012.jpg" alt="" width="600px"
  />
@@ -12,6 +13,9 @@ function Aboutpage (){
      page if we are already did sign in then we can give login in. If not we have to first give sign in and then we should give login.
      It already provides few spices data. If we want more we can click on add button then add the data we want in it.
 </h3>
+<Link to='/'>
+<button>BACK</button>
+</Link>
 
         </div>
     )

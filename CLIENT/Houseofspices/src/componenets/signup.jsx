@@ -10,13 +10,10 @@ function Signuppage (){
             <input type="text" placeholder="Nick Name"/>
             </div>
             <div>
-            <input type="text" placeholder="Nick Name"/>
-            </div>
-            <div>
             <input type="text" placeholder="Email Id"/>
             </div>
             <div>
-            <input type="text" placeholder="Phone Number"/>
+            <input type="text" placeholder="Password"/>
             </div>
             <div>
             <button>sign up</button>
