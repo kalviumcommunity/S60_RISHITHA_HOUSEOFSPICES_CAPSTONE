@@ -2,7 +2,7 @@ import React from "react";
 
 function Signuppage (){
     return(
-        <div className="border">
+        <div className="signpage">
              <div>
             <input type="text" placeholder="Full Name"/>
             </div>

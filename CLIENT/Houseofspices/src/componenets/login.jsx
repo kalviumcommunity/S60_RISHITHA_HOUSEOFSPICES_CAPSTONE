@@ -2,7 +2,7 @@ import React from "react";
 
 function Loginpage (){
     return(
-        <div className="boder">
+        <div className="signpage">
             <div>
             <input type="text" placeholder="Full Name"/>
             </div>
