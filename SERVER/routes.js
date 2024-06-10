@@ -1,7 +1,7 @@
 const express=require("express");
 const schema = require("./schemajoi")
 const spicesApp=express();
-const {model} = require("./mongo")
+const {model,clientModel} = require("./mongo")
 spicesApp.use(express.json())
 spicesApp.get("/get",(req,res)=>{
     model.find({})
@@ -45,6 +45,51 @@ spicesApp.post("/post", (req,res)=>{
     })
     // res.send("This  is a post.")
 })
+spicesApp.post("/sign", (req,res)=>{
+    clientModel.create(req.body)
+    .then((ele)=>{
+        res.json(ele)
+    })
+    .catch((err)=>{
+        console.log(err)
+        res.json(err)
+    })
+})
+
+spicesApp.get("/sign", (req,res)=>{
+    clientModel.find({})
+    .then((ele)=>{
+        res.json(ele)
+    })
+    .catch((err)=>{
+        console.log(err)
+        res.json(err)
+    })
+})
+
+spicesApp.post("/login", (req, res) => {
+    const {name,email,pin} = req.body
+    clientModel.findOne({email : email})
+    .then(infro => {
+        if(infro){
+            if(infro.pin === pin && infro.name === name){
+                res.json({message:"User Login"})
+
+            }else{
+                console.log("User detail did not match")
+                res.json({message: "Invalid user details, Prefer to signup"})
+            }
+        }else{
+            console.log("login failed")
+            res.json({message: "Invalid user details, Prefer to signup"})
+        }
+    })
+    .catch(error => {
+        console.log(`Error: ${error.message}`);
+        res.json({ message: "An error occurred during login" });
+    });
+})
+
 spicesApp.delete("/delete/:key",(req,res)=>{
     const key = req.params.key;
     model.findByIdAndDelete(key)
