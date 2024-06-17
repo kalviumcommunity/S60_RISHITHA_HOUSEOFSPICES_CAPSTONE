@@ -35,7 +35,7 @@ function Adding(){
              .catch(error => console.log(error));
     }
     return(
-        <div>
+        <div className="signpage"> 
             <form>
                 <div>
                     <input type="text" placeholder="Spice Name" onChange={changespice} />
