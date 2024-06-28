@@ -10,7 +10,7 @@ function Signuppage() {
     const navigate = useNavigate();
     const submit=()=>{
     navigate("/fetch")
-    axios.post("http://localhost:8080/sign",{name, email , pin})
+    axios.post("http://localhost:5000/sign",{name, email , pin})
        .then(res=>console.log(res))
        .catch(err=>console.log(err))
     }
