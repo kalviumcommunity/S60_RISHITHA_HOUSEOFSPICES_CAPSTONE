@@ -10,7 +10,7 @@ function Loginpage() {
     const navigate = useNavigate();
     const submit =(event)=>{
         event.preventDefault()
-    axios.post("http://localhost:8080/login",{name,email,pin})
+    axios.post("http://localhost:5000/login",{name,email,pin})
        .then((res)=>{console.log(res.data.message)
         if(res.data.message==="User Login"){
             navigate("/fetch")
