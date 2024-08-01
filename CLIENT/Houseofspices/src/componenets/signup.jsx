@@ -21,6 +21,7 @@ function Signuppage() {
                 .then(res => {
                     console.log(res);
                     navigate("./front");
+                    localStorage.setItem("storage",res.data.name);
                 })
                 .catch(err => console.log(err));
         }

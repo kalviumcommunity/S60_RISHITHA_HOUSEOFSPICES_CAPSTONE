@@ -16,16 +16,6 @@ function FetchData() {
     }
   };
 
-  // const deleteData = async (key) => {
-  //   try {
-  //     const response = await axios.delete(`http://localhost:5000/delete/${key}`);
-  //     console.log(response);
-  //     setSpicesData(spicesData.filter(item => item._id !== key));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   useEffect(() => {
     const gettingData = async () => {
       try {
@@ -51,7 +41,6 @@ function FetchData() {
           <button onClick={decrease}>-</button>
           <span>{count}</span>
           <button onClick={increase}>+</button>
-          {/* <button onClick={() => deleteData(data._id)}>Delete</button> */}
           <Link to={`/update/${data._id}`}>
             <button>Update</button>
           </Link>

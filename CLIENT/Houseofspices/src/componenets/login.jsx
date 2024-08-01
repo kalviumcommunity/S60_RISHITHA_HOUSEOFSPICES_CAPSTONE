@@ -20,11 +20,10 @@ function Loginpage() {
         if (isFormValid) {
             axios.post("http://localhost:5000/login", { name, email, pin })
                 .then((res) => {
-                    console.log(res.data.message);
+                    console.log(res.data.name);
                     if (res.data.message === "User Login") {
                         navigate("/front");
-                        document.cookie = `name=${name}; expires=Sun, 31 Dec 2034 00:00:00 GMT`;
-                        document.cookie = `email=${email}; expires=Sun, 31 Dec 2034 00:00:00 GMT`;
+                        localStorage.setItem("storage",res.data.name);
                     } else if (res.data.message === "Invalid user details, Prefer to signup") {
                         error();
                     }
