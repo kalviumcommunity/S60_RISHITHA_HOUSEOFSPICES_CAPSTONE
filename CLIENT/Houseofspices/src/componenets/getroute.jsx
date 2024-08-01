@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 function FetchData() {
   const [spicesData, setSpicesData] = useState([]);
@@ -15,15 +16,15 @@ function FetchData() {
     }
   };
 
-  const deleteData = async (key) => {
-    try {
-      const response = await axios.delete(`http://localhost:5000/delete/${key}`);
-      console.log(response);
-      setSpicesData(spicesData.filter(item => item._id !== key));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const deleteData = async (key) => {
+  //   try {
+  //     const response = await axios.delete(`http://localhost:5000/delete/${key}`);
+  //     console.log(response);
+  //     setSpicesData(spicesData.filter(item => item._id !== key));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     const gettingData = async () => {
@@ -50,7 +51,10 @@ function FetchData() {
           <button onClick={decrease}>-</button>
           <span>{count}</span>
           <button onClick={increase}>+</button>
-          <button onClick={() => deleteData(data._id)}>Delete</button>
+          {/* <button onClick={() => deleteData(data._id)}>Delete</button> */}
+          <Link to={`/update/${data._id}`}>
+            <button>Update</button>
+          </Link>
         </div>
       ))}
     </div>

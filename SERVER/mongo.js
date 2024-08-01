@@ -42,20 +42,32 @@ const userdata = mongoose.Schema({
         type: String,
         required:true,
     },
-    password: {
+    pin: {
         type: String,
         required:true,
     }
 })
+
+const userExperienceSchema = new mongoose.Schema({
+    experience: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+});
 const Spice = mongoose.model("Spice", spicesSchema);
+const UserExperience = mongoose.model("UserExperience", userExperienceSchema);
 const modelUser = mongoose.model("infro", userdata)
 // Spice.insertMany(data)
 //     .then(() => console.log("Data sent"))
 //     .catch((err) => console.error("Error sending data:", err));
-
 module.exports = {
     connectdb: backEnd,
     model: Spice,
-    clientModle: modelUser
-};
+    clientModle: modelUser,
+      userExperienceModel: UserExperience,
 
+};

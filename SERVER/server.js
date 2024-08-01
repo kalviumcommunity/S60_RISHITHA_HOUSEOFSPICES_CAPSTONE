@@ -14,8 +14,8 @@ app.get("/ping", (req, res) => {
     response.send(cra)
     // return res.send("connected");
 });
-app.listen(5000, () => {
-    connectdb(); 
+app.listen(5000, async() => {
+    await connectdb(); 
     console.log("This is Express.js file.");
 });
 
