@@ -7,6 +7,7 @@ import Adding from './componenets/postroute';
 import UpdatingData from './componenets/update';
 import ReviewData from './componenets/review';
 import "./App.css"
+// import Cart from "./components/Cart";
 import React from "react";
 
 
@@ -22,6 +23,7 @@ function App() {
       <Route path='/about' element={<Aboutpage/>}></Route>
       <Route path="/update/:key" element={<UpdatingData/>}></Route>
       <Route path='/review' element={<ReviewData/>}></Route>
+      {/* <Route path="/cart" element={<Cart/>}></Route> */}
     </Routes>
 
     </>

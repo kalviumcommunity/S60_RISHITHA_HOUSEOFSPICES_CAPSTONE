@@ -58,8 +58,20 @@ const userExperienceSchema = new mongoose.Schema({
         required: true,
     },
 });
+
+const SpicesList=mongoose.Schema({
+    id : {type : mongoose.Schema.Types.ObjectId, ref : 'Spice'},
+    Numberof: {type : Number, min : 1}
+});
+
+const SpicesCart=mongoose.Schema({
+    userid : {type : mongoose.Schema.Types.ObjectId, ref : 'userdata'},
+    spices : [SpicesList]
+})
+
 const Spice = mongoose.model("Spice", spicesSchema);
 const UserExperience = mongoose.model("UserExperience", userExperienceSchema);
+const SpiceCart = mongoose.model("SpicesCart",SpicesCart)
 const modelUser = mongoose.model("infro", userdata)
 // Spice.insertMany(data)
 //     .then(() => console.log("Data sent"))
@@ -68,6 +80,7 @@ module.exports = {
     connectdb: backEnd,
     model: Spice,
     clientModle: modelUser,
+    SpicesCart : SpiceCart,
       userExperienceModel: UserExperience,
 
 };
