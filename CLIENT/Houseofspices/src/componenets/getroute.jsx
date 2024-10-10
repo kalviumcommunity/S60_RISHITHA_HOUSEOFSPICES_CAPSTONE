@@ -44,6 +44,9 @@ function FetchData() {
           <Link to={`/update/${data._id}`}>
             <button>Update</button>
           </Link>
+          <Link to={`/cart/get/`}>
+          <button>Add to Cart</button>
+          </Link>
         </div>
       ))}
     </div>
