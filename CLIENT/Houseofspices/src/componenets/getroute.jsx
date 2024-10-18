@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
+import { Link,useNavigate } from "react-router-dom";
 
 function FetchData() {
   const [spicesData, setSpicesData] = useState([]);
   const [count, setCount] = useState(0);
+  const [selected,setselected]=useState(null)
+  const [userid,setid]=useState("")
+  const navigate=useNavigate();
 
   const increase = () => {
     setCount(count + 1);
@@ -20,7 +24,7 @@ function FetchData() {
     const gettingData = async () => {
       try {
         const database = await axios.get("http://localhost:5000/get");
-        console.log(database.data.a);
+        // console.log(database.data.a);
         setSpicesData(database.data.a);
       } catch (err) {
         console.error("Error :", err);
@@ -28,6 +32,59 @@ function FetchData() {
     };
     gettingData();
   }, []);
+
+  const getToken=localStorage.getItem("usertoken")
+
+  useEffect(
+    ()=>{
+      if(getToken){
+        try{
+           const decodetoken=jwtDecode(getToken);
+           if(decodetoken && decodetoken.User && decodetoken.User.id){
+            const userid=decodetoken.User.id
+            setid(userid)
+           }else{
+            console.log("Invalid Token")
+           }
+          }catch(error){
+              console.log("jwt token err:",error)
+          }
+        }
+        else{
+          console.log("no token in local storage.")
+        }
+    },[])
+
+    const AddtoCart=async (id,event)=>{
+      event.preventDefault()
+      setselected(id)
+      try{
+        const getcart=await axios.get(`http://localhost:5000/cart/get/${userid}`)
+        const getdata=getcart.data
+        const list=getdata.spices.find(item=>item.id===id)
+        if(list){
+          const Incerement=list.Numberof+1 
+          const makepost=await axios.post(`http://localhost:5000/cart/post/${userid}`,{spices:[{id,Numberof:Incerement}]})
+          setCount(Incerement)
+          console.log(makepost)
+          navigate(`/cart/get/${userid}`)
+        }else{
+          const makepost=await axios.post(`http://localhost:5000/cart/post/${userid}`,{spices:[{id,Numberof:count}]})
+          console.log(makepost)
+          navigate(`/cart/get/${userid}`)
+        }
+      }catch(err){
+       if(err.response.status===404){
+        try{
+          const postcart=await axios.post(`http://localhost:5000/cart/post/${userid}`,{spices:[{id,Numberof : count}]})
+          console.log("new users cart",postcart.data)
+          navigate(`/cart/get/${userid}`)
+        }catch(err){
+          console.log("err in 404",err)
+        }
+       }
+      }
+    }
 
   return (
     <div className="get">
@@ -44,9 +101,7 @@ function FetchData() {
           <Link to={`/update/${data._id}`}>
             <button>Update</button>
           </Link>
-          <Link to={`/cart/get/`}>
-          <button>Add to Cart</button>
-          </Link>
+          <button onClick={(event)=> {AddtoCart(data._id,event)}}>Add to Cart</button>
         </div>
       ))}
     </div>

@@ -26,7 +26,8 @@ function Loginpage() {
                     console.log(res.data);
                     if (res.data.message === "User Login") {
                         navigate("/front");
-                        localStorage.setItem("storage",res.data.name);
+                        localStorage.setItem("usertoken",res.data.Token);
+                        localStorage.setItem("username",res.data.name);
                         // localStorage.setItem("")
                         console.log(res.data)
                     } else if (res.data.message === "Invalid user details, Prefer to signup") {
@@ -77,7 +78,8 @@ function Loginpage() {
                     console.log(object)
                     console.log(res.data.name);
                     if (res.data.message === "User Login") {
-                        localStorage.setItem("storage",res.data.name);
+                        localStorage.setItem("usertoken",res.data.Token);
+                        localStorage.setItem("username",res.data.name);
                         navigate('/front')
                     } else if (res.data.message === "Invalid user details, Prefer to signup") {
                         error();
