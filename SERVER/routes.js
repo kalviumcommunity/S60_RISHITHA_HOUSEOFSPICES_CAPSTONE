@@ -1,10 +1,17 @@
 const express = require('express');
 const schema = require('./schemajoi');
 const spicesApp = express();
+const dot = require("dotenv");
+const jwt=require("jsonwebtoken");
 const { model, clientModle, userExperienceModel, SpicesCart } = require('./mongo');
+<<<<<<< HEAD
+
+=======
 const nodemailer = require("nodemailer");
 const { model, clientModle, userExperienceModel } = require('./mongo');
+>>>>>>> origin/google
 spicesApp.use(express.json());
+dot.config();
 
 const transporter = nodemailer.createTransport({
     service: "outlook",
@@ -92,25 +99,45 @@ spicesApp.get('/sign', (req, res) => {
 
 spicesApp.post('/login', (req, res) => {
     const { name, email, pin } = req.body;
-    console.log(req.body)
+    console.log(req.body);
+    
     clientModle.findOne({ email: email })
         .then((info) => {
             if (info) {
                 if (info.pin === pin && info.name === name) {
-                    console.log("User authenticated")
-                    console.log(info)
-                    res.json({ message: "User Login", name : info.name  });
+                    console.log("User authenticated");
+                    console.log(info);
+                    
+                    const payload = {
+                        User: {
+                            id: info._id  // Correct reference to info, not userinfo
+                        }
+                    };
+
+                    jwt.sign(payload, process.env.secretkey, { expiresIn: "30d" }, (error, jwtToken) => {
+                        if (error) {
+                            console.error("Error signing JWT:", error);  // Better error logging
+                            return res.status(500).json({ message: "Error generating token" });
+                        } else {
+                            res.json({ message: "User Login", Token: jwtToken, name: info.name });
+                        }
+                    });
+
                 } else {
-                    res.json({ message: "Invalid user details, Prefer to signup" });
-                    console.log("User details incorrect")
+                    res.status(400).json({ message: "Invalid user details, prefer to signup" });
+                    console.log("User details incorrect");
                 }
             } else {
-                res.json({ message: "Invalid user details, Prefer to signup" });
-                console.log("No user found")
+                res.status(404).json({ message: "No user found, prefer to signup" });
+                console.log("No user found");
             }
         })
-        .catch((err) => res.json({ message: "An error occurred during login" }));
+        .catch((err) => {
+            console.error("Error during login process:", err);  // Better logging for the error
+            res.status(500).json({ message: "An error occurred during login", error: err.message });
+        });
 });
+
 
 spicesApp.delete('/delete/:key', (req, res) => {
     const key = req.params.key;
