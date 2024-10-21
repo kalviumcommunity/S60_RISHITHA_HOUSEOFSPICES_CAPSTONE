@@ -4,9 +4,22 @@ const spicesApp = express();
 const dot = require("dotenv");
 const jwt=require("jsonwebtoken");
 const { model, clientModle, userExperienceModel, SpicesCart } = require('./mongo');
+<<<<<<< HEAD
 
+=======
+const nodemailer = require("nodemailer");
+const { model, clientModle, userExperienceModel } = require('./mongo');
+>>>>>>> origin/google
 spicesApp.use(express.json());
 dot.config();
+
+const transporter = nodemailer.createTransport({
+    service: "outlook",
+    auth: {
+        user: "mohanavamsi16@outlook.com",
+        pass: "fmyeynjakqxqxtsm",
+    },
+});
 
 spicesApp.get('/getfile', (req, res) => {
     userExperienceModel.find({})
@@ -27,6 +40,15 @@ spicesApp.delete('/deletefile/:id', async (req, res) => {
         .catch((err) => res.json(err));
 });
 
+spicesApp.put('/updateExp/:id', (req, res) => {
+    const id = req.params.id;
+    userExperienceModel.findByIdAndUpdate(id, {
+        review: req.body.review,
+        image: req.body.image,
+    })
+        .then(() => res.json({ message: 'Update successful' }))
+        .catch((err) => res.status(500).send('Error updating data'));
+});
 spicesApp.get('/get', (req, res) => {
     model.find({})
         .then((a) => res.json({ a }))
@@ -44,6 +66,8 @@ spicesApp.put('/put/:key', (req, res) => {
     })
     .then(() => res.send('done'))
     .catch((err) => res.status(500).json({ message: 'Error updating data', error: err }));
+        .then(() => res.send('done'))
+        .catch((err) => res.status(500).send('Error updating data'));
 });
 
 spicesApp.post('/post', (req, res) => {
@@ -58,7 +82,12 @@ spicesApp.post('/post', (req, res) => {
 
 spicesApp.post('/sign/post', (req, res) => {
     clientModle.create(req.body)
-        .then((ele) => res.json(ele))
+        .then((ele) => {
+            transporter.sendMail({ from: "mohanavamsi16@outlook.com", to: req.body.email, subject: "welcome to House of spices", text: "hey welcome to house of spice family! 🙏" })
+                .then(() => {
+                    res.json(ele)
+                })
+        })
         .catch((err) => res.json(err));
 });
 
@@ -165,4 +194,5 @@ spicesApp.post('/cart/post/:userid', async (req, res) => {
     }
 });
 
+module.exports = spicesApp;
 module.exports = spicesApp;
