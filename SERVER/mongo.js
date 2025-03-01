@@ -73,9 +73,6 @@ const Spice = mongoose.model("Spice", spicesSchema);
 const UserExperience = mongoose.model("UserExperience", userExperienceSchema);
 const SpiceCart = mongoose.model("SpicesCart",SpicesCart)
 const modelUser = mongoose.model("infro", userdata)
-// Spice.insertMany(data)
-//     .then(() => console.log("Data sent"))
-//     .catch((err) => console.error("Error sending data:", err));
 module.exports = {
     connectdb: backEnd,
     model: Spice,

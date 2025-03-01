@@ -148,6 +148,20 @@ function Signuppage() {
     >
         View Test Report
     </button>
+
+    <button 
+        onClick={() => navigate("/test-results")} 
+        style={{
+            backgroundColor: "#007BFF",
+            color: "white",
+            padding: "10px 15px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px"
+        }}
+    >
+        View Test Report Backend
+    </button>
 </div>
 
                 </div>
