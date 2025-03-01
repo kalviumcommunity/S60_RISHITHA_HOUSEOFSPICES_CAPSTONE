@@ -134,6 +134,22 @@ function Signuppage() {
                     <Link to="/login">
                         <button>Login</button>
                     </Link>
+                    <div style={{ textAlign: "center", marginTop: "20px" }}>
+    <button 
+        onClick={() => navigate("/test-report")} 
+        style={{
+            backgroundColor: "#007BFF",
+            color: "white",
+            padding: "10px 15px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px"
+        }}
+    >
+        View Test Report
+    </button>
+</div>
+
                 </div>
             </div>
     );

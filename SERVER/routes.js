@@ -2,14 +2,9 @@ const express = require('express');
 const schema = require('./schemajoi');
 const spicesApp = express();
 const dot = require("dotenv");
-const jwt=require("jsonwebtoken");
-const { model, clientModle, userExperienceModel, SpicesCart } = require('./mongo');
-<<<<<<< HEAD
-
-=======
+const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const { model, clientModle, userExperienceModel } = require('./mongo');
->>>>>>> origin/google
+const { model, clientModle, userExperienceModel, SpicesCart } = require('./mongo');
 spicesApp.use(express.json());
 dot.config();
 
@@ -35,7 +30,7 @@ spicesApp.post('/postfile', async (req, res) => {
 
 spicesApp.delete('/deletefile/:id', async (req, res) => {
     const id = req.params.id;
-    userExperienceModel.findByIdAndDelete({ _id: id })
+    userExperienceModel.findByIdAndDelete(id)
         .then((data) => res.json(data))
         .catch((err) => res.json(err));
 });
@@ -49,6 +44,7 @@ spicesApp.put('/updateExp/:id', (req, res) => {
         .then(() => res.json({ message: 'Update successful' }))
         .catch((err) => res.status(500).send('Error updating data'));
 });
+
 spicesApp.get('/get', (req, res) => {
     model.find({})
         .then((a) => res.json({ a }))
@@ -66,8 +62,6 @@ spicesApp.put('/put/:key', (req, res) => {
     })
     .then(() => res.send('done'))
     .catch((err) => res.status(500).json({ message: 'Error updating data', error: err }));
-        .then(() => res.send('done'))
-        .catch((err) => res.status(500).send('Error updating data'));
 });
 
 spicesApp.post('/post', (req, res) => {
@@ -83,10 +77,14 @@ spicesApp.post('/post', (req, res) => {
 spicesApp.post('/sign/post', (req, res) => {
     clientModle.create(req.body)
         .then((ele) => {
-            transporter.sendMail({ from: "mohanavamsi16@outlook.com", to: req.body.email, subject: "welcome to House of spices", text: "hey welcome to house of spice family! 🙏" })
-                .then(() => {
-                    res.json(ele)
-                })
+            transporter.sendMail({
+                from: "mohanavamsi16@outlook.com",
+                to: req.body.email,
+                subject: "welcome to House of spices",
+                text: "hey welcome to house of spice family! 🙏"
+            })
+            .then(() => res.json(ele))
+            .catch((err) => res.json({ message: "Failed to send email", error: err }));
         })
         .catch((err) => res.json(err));
 });
@@ -100,23 +98,23 @@ spicesApp.get('/sign', (req, res) => {
 spicesApp.post('/login', (req, res) => {
     const { name, email, pin } = req.body;
     console.log(req.body);
-    
+
     clientModle.findOne({ email: email })
         .then((info) => {
             if (info) {
                 if (info.pin === pin && info.name === name) {
                     console.log("User authenticated");
                     console.log(info);
-                    
+
                     const payload = {
                         User: {
-                            id: info._id  // Correct reference to info, not userinfo
+                            id: info._id
                         }
                     };
 
                     jwt.sign(payload, process.env.secretkey, { expiresIn: "30d" }, (error, jwtToken) => {
                         if (error) {
-                            console.error("Error signing JWT:", error);  // Better error logging
+                            console.error("Error signing JWT:", error);
                             return res.status(500).json({ message: "Error generating token" });
                         } else {
                             res.json({ message: "User Login", Token: jwtToken, name: info.name });
@@ -133,11 +131,10 @@ spicesApp.post('/login', (req, res) => {
             }
         })
         .catch((err) => {
-            console.error("Error during login process:", err);  // Better logging for the error
+            console.error("Error during login process:", err);
             res.status(500).json({ message: "An error occurred during login", error: err.message });
         });
 });
-
 
 spicesApp.delete('/delete/:key', (req, res) => {
     const key = req.params.key;
@@ -166,7 +163,7 @@ spicesApp.get('/cart/get/:userid', getcartdetails, (req, res) => {
 
 spicesApp.post('/cart/post/:userid', async (req, res) => {
     const SpicesList = req.body.spices;
-    console.log(req.body,"body")
+    console.log(req.body, "body");
     if (!Array.isArray(SpicesList)) {
         return res.status(400).json({ message: "Need in format of array" });
     }
@@ -194,5 +191,4 @@ spicesApp.post('/cart/post/:userid', async (req, res) => {
     }
 });
 
-module.exports = spicesApp;
 module.exports = spicesApp;
