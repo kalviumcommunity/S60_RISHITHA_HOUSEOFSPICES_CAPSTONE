@@ -18,6 +18,8 @@ A website showcasing a variety of spices from all around the world! 😍
 - **JavaScript**  
 - **Firebase** (for authentication)  
 - **Bruno** (for API testing)  
-- **Jest** (for application testing)  
+- **Jest** (for application testing) 
+
+![Testing](C:\Users\rishi\OneDrive\Pictures\Screenshots\Screenshot (916).png)
 
 ## 🚀 Getting Started  
