@@ -1,31 +1,23 @@
-# HOUSE OF SPICES :
+# 🏡 HOUSE OF SPICES 🌶️  
 
+A website showcasing a variety of spices from all around the world! 😍  
 
-### This website consist of different spices from all around the world 😍!!
+![House of Spices](https://www.tastingtable.com/img/gallery/tips-you-need-when-cooking-with-spices/intro-1683560012.jpg)  
 
-![img](https://www.tastingtable.com/img/gallery/tips-you-need-when-cooking-with-spices/intro-1683560012.jpg)
-### Point to be noted :
-#### 1. This is a user friendly website.
-#### 2. It consists of rarest to the most available spices from all around the world.
-#### 3. It consist of login and signup where we will get access to the data.
-#### 4. The data can be edited and also can be added.
-#### 5 . We can filter it out by there availability.
+## 📌 Features  
+- ✅ **User-Friendly Interface** – Easy to navigate and explore different spices.  
+- ✅ **Wide Collection** – Includes both rare and commonly available spices globally.  
+- ✅ **Authentication** – Login and Signup functionality using **Firebase**.  
+- ✅ **Data Management** – Users can **add, edit, and manage** spice-related data.  
+- ✅ **Testing** –  
+  - **Backend APIs tested using Bruno**  
+  - **Application testing done with Jest**  
 
+## 🛠️ Tech Stack  
+- **MERN Stack** (MongoDB, Express.js, React, Node.js)  
+- **JavaScript**  
+- **Firebase** (for authentication)  
+- **Bruno** (for API testing)  
+- **Jest** (for application testing)  
 
-![img](https://www.gastrotravelogue.com/wp-content/uploads/2020/06/spice-header.jpg)
-
-#### Backend Deployed link -
-(https://s60-rishitha-houseofspices-capstone-3.onrender.com/ping)
-
-#### Front Deployed link -
-(https://unrivaled-fenglisu-62cca5.netlify.app/)
-
-Things need to be done :-
-
-on 26-04-2024 
-
-    creating a basic structure of front-end and backend 
-
-on 27-04-2024
-
-    Creating entities for the users.
+## 🚀 Getting Started  
