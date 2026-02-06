@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const dot = require("dotenv");
 const data = require("./spcies");
-const { required } = require("joi");
 dot.config();
 async function backEnd() {
     try {
-        await mongoose.connect(process.env.connectdb, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect("mongodb+srv://rishitha:rishitha@cluster0.ne28e.mongodb.net/");
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
@@ -33,20 +32,38 @@ const spicesSchema = mongoose.Schema({
         required:true,
     },
 });
+// const userdata = mongoose.Schema({
+//     name:{
+//         type: String,
+//         required:true,
+//     },
+//     email:{
+//         type: String,
+//         required:true,
+//     },
+//     pin: {
+//         type: String,
+//         required:true,
+//     }
+// })
 const userdata = mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        required:true,
+        required: true,
     },
-    email:{
+
+    email: {
         type: String,
-        required:true,
+        required: true,
+        unique: true,   // ✅ Add this
     },
+
     pin: {
         type: String,
-        required:true,
+        required: true,
     }
-})
+});
+
 
 const userExperienceSchema = new mongoose.Schema({
     experience: {

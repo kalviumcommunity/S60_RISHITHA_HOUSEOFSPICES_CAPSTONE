@@ -74,20 +74,62 @@ spicesApp.post('/post', (req, res) => {
         .catch((err) => res.json(err));
 });
 
-spicesApp.post('/sign/post', (req, res) => {
-    clientModle.create(req.body)
-        .then((ele) => {
-            transporter.sendMail({
-                from: "mohanavamsi16@outlook.com",
-                to: req.body.email,
-                subject: "welcome to House of spices",
-                text: "hey welcome to house of spice family! 🙏"
-            })
-            .then(() => res.json(ele))
-            .catch((err) => res.json({ message: "Failed to send email", error: err }));
-        })
-        .catch((err) => res.json(err));
+// spicesApp.post('/sign/post', (req, res) => {
+//     clientModle.create(req.body)
+//         .then((ele) => {
+//             transporter.sendMail({
+//                 from: "mohanavamsi16@outlook.com",
+//                 to: req.body.email,
+//                 subject: "welcome to House of spices",
+//                 text: "hey welcome to house of spice family! 🙏"
+//             })
+//             .then(() => res.json(ele))
+//             .catch((err) => res.json({ message: "Failed to send email", error: err }));
+//         })
+//         .catch((err) => res.json(err));
+// });
+spicesApp.post("/sign/post", async (req, res) => {
+  try {
+    const { name, email, pin } = req.body;
+
+    // ✅ Check if user already exists
+    const existingUser = await clientModle.findOne({ email });
+
+    if (existingUser) {
+      return res.json({
+        message: "User already exists",
+        name: existingUser.name,
+        user: existingUser
+      });
+    }
+
+    // ✅ Create new user
+    const newUser = await clientModle.create({ name, email, pin });
+
+    // ✅ Send welcome email
+    await transporter.sendMail({
+      from: "mohanavamsi16@outlook.com",
+      to: email,
+      subject: "Welcome to House of Spices",
+      text: "Hey welcome to House of Spice family! 🙏"
+    });
+
+    res.json({
+      message: "Signup successful",
+      name: newUser.name,
+      user: newUser
+    });
+
+  } catch (err) {
+    console.error("Signup error:", err);
+    res.status(500).json({
+      message: "Signup failed",
+      error: err.message
+    });
+  }
 });
+
+
 
 spicesApp.get('/sign', (req, res) => {
     clientModle.find({})

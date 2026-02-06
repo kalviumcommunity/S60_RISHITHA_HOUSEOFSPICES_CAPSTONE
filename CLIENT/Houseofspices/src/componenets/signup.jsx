@@ -49,34 +49,58 @@ function Signuppage() {
         alert("Failed to signin!!");
     };
 
-    const handlegoogle = async () => {
-        try {
-            const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            setobject(user);
-            setinput(true);
-            localStorage.setItem("storage", user.displayName);
-            // navigate("./front"); 
-        } catch (error) {
-            console.error("Error during Google sign-in:", error);
-        }
-    }
+//     const handlegoogle = async () => {
+//         try {
+//             const provider = new GoogleAuthProvider();
+//             const result = await signInWithPopup(auth, provider);
+//             const user = result.user;
+//             setobject(user);
+//             setinput(true);
+//             localStorage.setItem("storage", user.displayName);
+//             // navigate("./front"); 
+//         } catch (error) {
+//             console.error("Error during Google sign-in:", error);
+//         }
+//     }
 
-    const Clicked = async()=>{
-        if (object) {
-            axios.post("http://localhost:5000/sign/post", { name:object.displayName, email:object.email, pin : pin })
-                .then((res) => {
-                    console.log(object)
-                    console.log(res.data.name);
-                    localStorage.setItem("storage", res.data.name);
-                })
-                 .catch((err) => {
-                    console.log(err);
-                    error();
-                });
-            }
-        }
+//     const Clicked = async()=>{
+//         if (object) {
+//             axios.post("http://localhost:5000/sign/post", { name:object.displayName, email:object.email, pin : pin })
+//                 .then((res) => {
+//     console.log("Response:", res.data);
+
+//     localStorage.setItem(
+//       "storage",
+//       res.data.name || object.displayName
+//     );
+
+//     navigate("./front");
+// });
+//             }
+//         }
+const handlegoogle = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+
+    const user = result.user;
+
+    const res = await axios.post("http://localhost:5000/sign/post", {
+      name: user.displayName,
+      email: user.email,
+      pin: "google-user"
+    });
+
+    console.log("Response:", res.data);
+
+    localStorage.setItem("storage", res.data.name);
+
+    navigate("./front");
+
+  } catch (err) {
+    console.log("Google Signin Error:", err);
+  }
+};
 
     return (
         <div className="enter">
